@@ -158,10 +158,10 @@ def submenuConsultas(root):
 def visualizar_datos():
 
     #Extracción de los datos
-    df_propiedades = pd.read_xml('data/inmobiliaria.xml', xpath='.//propiedad')
-    df_clientes = pd.read_xml('data/inmobiliaria.xml', xpath='.//cliente')
-    df_agentes = pd.read_xml('data/inmobiliaria.xml', xpath='.//agente')
-    df_contratos = pd.read_xml('data/inmobiliaria.xml', xpath='.//contrato')
+    df_propiedades = pd.read_xml('AnalisisXML/data/inmobiliaria.xml', xpath='.//propiedad')
+    df_clientes = pd.read_xml('AnalisisXML/data/inmobiliaria.xml', xpath='.//cliente')
+    df_agentes = pd.read_xml('AnalisisXML/data/inmobiliaria.xml', xpath='.//agente')
+    df_contratos = pd.read_xml('AnalisisXML/data/inmobiliaria.xml', xpath='.//contrato')
     
     df_clientes = df_clientes.drop(['preferencias'], axis=1)
     
@@ -202,8 +202,30 @@ def visualizar_datos():
     plt.tight_layout()
     plt.show()
 
+    df_casas_disponibles = df_propiedades[df_propiedades['tipo']== 'Casa']
+    conteo_estado = df_casas_disponibles['estado'].value_counts()
+
+    plt.figure(figsize=(10,6))
+    plt.subplot(1,3,1)
+    conteo_estado.plot(kind='pie', autopct='%1.1f%%', colors = ['orange','red'], startangle = 90, ylabel='Casas', shadow = True)
+
+    df_departamentos_disponibles = df_propiedades[df_propiedades['tipo']== 'Departamento']
+    conteo_estado = df_departamentos_disponibles['estado'].value_counts()
+    plt.subplot(1,3,2)
+    conteo_estado.plot(kind='pie', autopct='%1.1f%%', colors =['orange','red'], startangle=90, ylabel='Departamentos', shadow = True)
+
+    df_terrenos_disponibles = df_propiedades[df_propiedades['tipo']== 'Terreno']
+    conteo_estado = df_terrenos_disponibles['estado'].value_counts()
+    plt.subplot(1,3,3)
+    conteo_estado.plot(kind='pie', autopct='%1.1f%%', colors =['orange','red'], startangle = 90, ylabel='Terrenos', shadow = True)
+
+    plt.suptitle("Distribución de propiedades Disponibles y Vendidas según el tipo")
+    plt.show()
+    
+
+
 def main():
-    tree, root = load_xml('data/prueba.xml')
+    tree, root = load_xml('AnalisisXML/data/prueba.xml')
     while True:
         
         print("\n ----- PROYECTO FINAL -----")
@@ -215,7 +237,7 @@ def main():
         
         if opcion == '1':
             actualizar_datos(root)
-            save_xml(tree, 'data/inmobiliaria.xml')
+            save_xml(tree, 'AnalisisXML/data/inmobiliaria.xml')
         elif opcion == '2':
             submenuConsultas(root)
         elif opcion == '3':
