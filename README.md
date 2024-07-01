@@ -84,6 +84,8 @@ Para consultas o soporte, puedes contactarme en gmail [jarmando.rmz.19@gmail.com
 ## 📝 Notas Adicionales
 
 Asegúrate de tener los archivos XML en la carpeta data antes de ejecutar el programa.
+**Asegurate de cambiar cualquier ruta de acceso a los documentos XML para que se ajusten al arbol del poryecto en tu mauqina**
+
 
 El archivo crud.py contiene las funciones para agregar datos.
 

@@ -158,10 +158,10 @@ def submenuConsultas(root):
 def visualizar_datos():
 
     #Extracción de los datos
-    df_propiedades = pd.read_xml('AnalisisXML/data/inmobiliaria.xml', xpath='.//propiedad')
-    df_clientes = pd.read_xml('AnalisisXML/data/inmobiliaria.xml', xpath='.//cliente')
-    df_agentes = pd.read_xml('AnalisisXML/data/inmobiliaria.xml', xpath='.//agente')
-    df_contratos = pd.read_xml('AnalisisXML/data/inmobiliaria.xml', xpath='.//contrato')
+    df_propiedades = pd.read_xml('data/inmobiliaria.xml', xpath='.//propiedad')
+    df_clientes = pd.read_xml('data/inmobiliaria.xml', xpath='.//cliente')
+    df_agentes = pd.read_xml('data/inmobiliaria.xml', xpath='.//agente')
+    df_contratos = pd.read_xml('data/inmobiliaria.xml', xpath='.//contrato')
     
     df_clientes = df_clientes.drop(['preferencias'], axis=1)
     
